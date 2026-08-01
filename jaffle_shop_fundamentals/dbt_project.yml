@@ -1,0 +1,23 @@
+name: jaffle_shop_fundamentals
+
+profile: dbt_fundamentals
+
+seed-paths: ["seeds"]
+model-paths: ["models"]
+macro-paths: ["macros"]
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+seeds:
+  # Builds seeds into '<your_schema_name>_raw'
+  jaffle_shop_fundamentals:
+    +schema: raw
+
+models:
+  jaffle_shop_fundamentals:
+    +static_analysis: strict
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
